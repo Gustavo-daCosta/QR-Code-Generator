@@ -39,6 +39,9 @@ OBS: Don't forget the 'http://' or 'https://' in the URL.
 Paste the link here:
 ```
 E então o usuário vai digitar ou colar o link no input e o programa vai gerar o QR Code
-[![QRcode-Link.png](https://i.postimg.cc/JnBVmq6V/QRcode-Link.png)](https://postimg.cc/jwKk4zYZ)
+<br>
+<p align="center">
+     <img src="https://i.postimg.cc/JnBVmq6V/QRcode-Link.png)](https://postimg.cc/jwKk4zYZ" />
+</p>
 
 
