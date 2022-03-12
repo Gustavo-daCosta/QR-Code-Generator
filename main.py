@@ -1,19 +1,26 @@
-'''
-O código no geral está pronto, só tenho que arrumar uma maneira de mover os arquivos gerados para dentro de uma pasta
-'''
-
-from os import system, replace
+from os import system, exists, rename
+from shutil import move
 from PIL import Image
 import qrcode
 import validators
 
-def Menu(msg):
+def Menu(msg: str):
     tamanhomsg = len(msg) + 10
     print('-' * tamanhomsg)
     print(msg.center(tamanhomsg))
     print('-' * tamanhomsg)
 
-counterLink = counterText = counterPhone = 0
+def manipulateFiles(file: str, qrOption: str):
+    if exists(f"\QRcodeFiles\\QRcode{qrOption}\{file}"):
+        counter = 0
+        while True:
+            counter += 1
+            if exists(f"\QRcodeFiles\QRcode{qrOption}\{file}({counter})") is False:
+                rename(file, f"QRcode{qrOption}({counter}).jpg")
+                move(file, f"\QRcodeFiles\QRcode{qrOption}")
+    else:
+        move(file, f"\QRcodeFiles\QRcode{qrOption}\{file}")
+
 while True:
     Menu('QR CODE GENERATOR')
     print('''[ 1 ] QR CODE => LINK
@@ -32,6 +39,7 @@ while True:
                 break
             else:
                 print('ERROR! Invalid option, try again!')
+
     if option == 1:
         Menu('QR CODE => LINK')
         print("OBS: Don't forget the 'http://' or 'https://' in the URL.")
@@ -39,14 +47,15 @@ while True:
             link = str(input('Paste the link here: '))
             if validators.url(link) is True:
                 img = qrcode.make(link)
-                if counterLink == 0:
-                    file_name = "QRcodeLink.jpg"
-                    img.save(file_name)
+                file_name = "QRcodeLink.jpg"
+                img.save(file_name)
+                manipulateFiles(file=file_name, qrOption="Link")
                 break
             else:
                 print('Invalid link! Try again.')
                 input('Press ENTER to continue...')
                 system('cls')
+
     elif option == 2:
         Menu('QR CODE => TEXT')
         while True:
@@ -62,7 +71,9 @@ while True:
         img.paste(logo_display, logo_pos)
         file_name = "QRcodeText.jpg"
         img.save(file_name)
-        #replace(src = file_name, dst = f'\QRcodeFiles\{file_name}')
+        manipulateFiles(file=file_name, qrOption="Text")
+        
+
 
     elif option == 3:
         Menu('QR CODE => WHATSAPP PHONE NUMBER')

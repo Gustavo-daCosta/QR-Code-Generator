@@ -10,7 +10,7 @@ Um gerador de QR Code, escrito em python utilizando a biblioteca [qrcode](https:
 - [X]  Gerar um QR Code que mostra um texto para o usuário
 - [X]  Gerar um     QR Code que redireciona o usuário para o aplicativo do whatsapp, com o objetivo de adicionar um novo contato.
 - [X]  Adicionar icones aos QR Code gerados (ainda falta no QR Code do link)
-- [ ]  Manipulamento dos arquivos gerados
+- [X]  Manipulamento dos arquivos gerados
 - [ ]  QR Code com cores e logos personalizadas para compartilhamento de redes sociais
 - [X]  Implementar o gerador ao meu bot do discord
 - [ ]  Fazer uma interface gráfica do gerador com a biblioteca Tkinter
